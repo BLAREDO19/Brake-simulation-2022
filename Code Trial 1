@@ -1,4 +1,4 @@
-#This is the code what I was working on to do the braking simulation
+#This is the code what I was working on to do the braking simulation, I have implemented some libraries that I learn in a python course that FH provided to me.
 from numpy import *
 import matplotlib
 import matplotlib.pyplot as plt
