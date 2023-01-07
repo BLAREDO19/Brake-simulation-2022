@@ -1,4 +1,3 @@
-#This is the code what I was working on to do the braking simulation, I have implemented some libraries that I learn in a python course that FH provided to me.
 from numpy import *
 import matplotlib
 import matplotlib.pyplot as plt
@@ -11,23 +10,21 @@ import numpy as np
 # Velocity in km/h
 # Road type= wet and dry
 # Wet & Dry road
-# Inclination
 # Car friction coeff
 # udynamic
 # ustatic
-
-
 # Parameters to be used in formulas
 g = 9.81  # m/s2
-
 # Indicate the velocity of the vehicle in km/h and mass in kg and time in seconds
 velocity = 50
 m = 1200
 t = 10
 # Converting from km/hr to m/s
 v = velocity * 1000 / 3600
+v2 = 0
 print("V=", v)
 velocity_list = []
+velocity_list_2 = []
 
 # Scenario 1 concrete in dry condition, the friction coefficient (u)
 ud = 0.5  # dynamic
@@ -44,44 +41,29 @@ print("FR=", fr, "N")
 a = v / t
 print("a=", a, "m/s2")
 
-counter = 11
+counter = 10
 while counter > 0:
     velocity_list.append(v)
     v = v - a
     counter = counter - 1
+counter = 10
+v2 = velocity_list[-1]
+while counter > 0:
+    velocity_list_2.append(v2)
+    v2 = v2 + a
+    counter = counter - 1
 
 # Braking Distance
 bd = []
-bd_final = []
+#bd_final = []
 
 for ind in range(0, len(velocity_list)):
-    bd.append(((velocity_list[ind]) * (velocity_list[ind]) / (2 * g * ud)))
+    bd.append(((velocity_list_2[ind]) * (velocity_list_2[ind]) / (2 * g * ud)))
 print("Bd=", bd, "m")
 
-for i in range(len(bd)):
-    if i == 0:
-        bd_final.append(bd[i])
-    else:
-        bd_final.append(bd_final[i - 1] + bd[i])
-
-# Conservation of energy
-# w_kin = m * (v * v) / 2
-# print("Wkin=", w_kin)
-# Rule of Thumb
-# s_normal = (v / 10) * (v / 10)
-# print("Snormal=", s_normal)
-# s_danger = (v / 10) * (v / 10) * 0.5
-# print("Sdanger=", s_danger)
-# s_reaction = (v / 10) * (v / 10) * (v / 10)
-# print("Sreaction= ", s_reaction)
-
-# Representing braking distance in a plot:
-# x = np.arange(0,30,0.1)
-# y = np.arange(0,30,0.1)
-
-print(bd_final)
-plt.plot(bd_final, velocity_list)
+plt.plot(bd, velocity_list, "")
 plt.xlabel("Distance(m)")
 plt.ylabel("Velocity (m/s)")
-plt.title("Braking distance")
+plt.title("Braking distance Concrete Dry Condition")
 plt.show()
+
