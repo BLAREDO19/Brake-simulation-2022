@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jan  7 12:54:16 2023
+
+@author: Brian
+"""
+
 from numpy import *
 import matplotlib
 import matplotlib.pyplot as plt
@@ -10,6 +17,7 @@ import numpy as np
 # Velocity in km/h
 # Road type= wet and dry
 # Wet & Dry road
+
 # Car friction coeff
 # udynamic
 # ustatic
@@ -60,6 +68,8 @@ bd = []
 for ind in range(0, len(velocity_list)):
     bd.append(((velocity_list_2[ind]) * (velocity_list_2[ind]) / (2 * g * ud)))
 print("Bd=", bd, "m")
+
+
 
 plt.plot(bd, velocity_list, "")
 plt.xlabel("Distance(m)")
